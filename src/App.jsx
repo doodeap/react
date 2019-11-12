@@ -1,18 +1,40 @@
-import React from 'react';
-import "./App.css";
+import React from "react";
+import TodoItem from "./TodoItem";
+import toto from "./toto.png";
 
-function App() {
-  return (
-    <div className="root">
-    <header>header</header>
-    <nav>nav</nav>
-    <div>
-      <section>main</section>
-      <aside>aside</aside>
-    </div>
-    <footer>footer</footer>
-    </div>    
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      items: [],
+      value: ""
+    };
+  }
+
+  onClickAdd = e => {
+    const items = this.state.items;
+    items.push(this.state.value);
+    this.setState({
+      items
+    });
+  };
+
+  onChange = e => {
+    this.setState({ value: e.target.value });
+  };
+
+  render() {
+    return (
+      <>
+        <input type="text" onChange={this.onChange} />
+        <button onClick={this.onClickAdd}>추가</button>
+        {this.state.items.map((value, idx) => (
+          <TodoItem key={idx} value={value} />
+        ))}
+      <img src={toto}/>
+      </>
+    );
+  }
 }
-
 export default App;
