@@ -26,10 +26,10 @@ class ToDoItem extends React.Component {
         {/* <Value isOver={this.state.number>5}>값: {this.state.number}</Value> */}
         <input type="text"/>
         <button onClick={this.handlesujung}>수정</button>
-        <button onClick={this.handleDelete}>삭제</button>
+        <button onClick={this.props.onClickDel}>삭제</button>
       </div>
     );
   }
 }
 
-export default ToDoItem;
+export default ToDoList;

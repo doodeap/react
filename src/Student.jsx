@@ -1,75 +1,40 @@
-import React from "react";
-import styled from "styled-components";
-const Input = styled.input`
-&+div{
-    display:none;
-}
-&.check{
-    &+div{
-        display:block
-    }
-}
-`
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
+const Value = styled.div`
+ color:${props=>props.isOver?"red":"black"};
+`;
 
-class Student extends React.Component {
-    constructor(props) {
-        super(props);
-        const obj = {
-            key:"value",
-        }
-        const a = "value"
-        this.state = {
-            checked:false,
-            checkedStyle:false
-        };
-    }
+class Counter extends Component {
+	constructor(props) {
+		super(props);
+	
+	  this.state = {
+	    number: 0
+	  }
+	}
+  handleIncrease = () => {
+    this.setState({
+      number: this.state.number + 1
+    });
+  }
 
+  handleDecrease = () => {
+    this.setState({
+      number: this.state.number - 1
+    });
+  }
 
-handleChange = event => {
-    this.setState({ name: event.target.value });
-};
-
-handleChangeName = event => {
-    this.setState({ name: event.target.name });
-};
-
-handleChangeNumber = event => {
-    this.setState({ name: event.target.number });
-};
-
-handleChangeClub = event => {
-    this.setState({ name: event.target.club });
-};
-handleClick = event =>{
-    alert(`학번 ${this.state.number}, 이름 ${this.state.name}, 동아리 ${this.state.club}`);
-}
-handleChecked = event=>{
-    if({checked:event.target.checked});
-}
-handleCheckedStyle = event=>{
-    this.setState({checkedStyle:event.target.checked});
-}
-render(){
+  render() {
     return (
-        <div>
-            <input type="text" placeholder="이름" value={this.state.number} onClick={this.handleClick}/>
-            <input type="text" value={this.state.name} onClick={this.handleClick}/>
-            <input type="text" value={this.state.club} onClick={this.handleClick}/>
-            <br/>
-            <input type="text" value={this.state.name} onChange={this.handleChange}/>
-            이름은 <b>{this.props.name}</b>,학번은{this.props.Student_num},동아리는{this.props.club}
-            <div>{this.state.name}</div>
-            <br/>
-            {this.state.checked&&<div>check</div>
-            <Input type="checkBox" name="checkBox"
-            onChange = {this.handleCheckedStyle}
-            className = {this.state.checkedStyle&&"check"}
-            />
-            <div>check-styled</div>
-        </div>
-    )
-}
+      <div>
+        <h1>카운터</h1>
+        <Value isOver={this.state.number>5}>값: {this.state.number}</Value>
+        <button onClick={this.handleIncrease}>+</button>
+        <button onClick={this.handleDecrease}>-</button>
+      </div>
+    );
+  }
 }
 
-export default Student;
+export default Counter;
